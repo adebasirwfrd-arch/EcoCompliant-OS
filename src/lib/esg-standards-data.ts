@@ -1,0 +1,1324 @@
+export interface OpenEsQuestion {
+    id: string;
+    text: string;
+    pillar: string;
+}
+
+export interface OpenEsTopic {
+    id: string;
+    name: string;
+    questions: OpenEsQuestion[];
+}
+
+export interface OpenEsPillar {
+    name: string;
+    topics: OpenEsTopic[];
+}
+
+export interface OpenEsClass {
+    id: number;
+    name: string;
+    pillars: OpenEsPillar[];
+}
+
+export const OPEN_ES_CLASSES: OpenEsClass[] = [
+    {
+        "id": 1,
+        "name": "Fundamentals",
+        "pillars": [
+            {
+                "name": "Governance",
+                "topics": [
+                    {
+                        "id": "T-1-G-0",
+                        "name": "Relevant sustainability topics",
+                        "questions": [
+                            {
+                                "id": "TS1",
+                                "text": "Has your company identified the relevant sustainability topics?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "TS3",
+                                "text": "Has your company conducted an assessment or internal materiality analysis to identify the ESG (Environmental, Social, and Governance) aspects that are material for itself and its stakeholders?",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-G-1",
+                        "name": "Company model and strategy",
+                        "questions": [
+                            {
+                                "id": "BM1",
+                                "text": "Which of the 5 priority actions is your company working on?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM2",
+                                "text": "Has your company defined sustainability targets?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM3",
+                                "text": "Is your company able to describe the composition and organization of its management and control bodies (e.g., the Board of Directors, the Executive Committee, or the Management Board)?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM4",
+                                "text": "Does your company have a dedicated function for sustainability topics?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM5",
+                                "text": "Are the ownership and company leadership actively involved and regularly informed about the company's ESG results (for example, being enabled on the Open-es platform)?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM6",
+                                "text": "Has your company identified the relevant sustainability topics?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "BM7",
+                                "text": "Which of the 5 priority actions is your company working on?",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-G-2",
+                        "name": "Ethics and integrity",
+                        "questions": [
+                            {
+                                "id": "EI1",
+                                "text": "Has your company implemented anti-corruption procedures?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "EI2",
+                                "text": "Has your company implemented procedures to identify and report unlawful or non-compliant behavior with the company's ethical principles?",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-G-3",
+                        "name": "Supplier assessment",
+                        "questions": [
+                            {
+                                "id": "VCM1",
+                                "text": "Does your company measure the ESG performance of its suppliers?",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Social",
+                "topics": [
+                    {
+                        "id": "T-1-S-0",
+                        "name": "Diversity and inclusion",
+                        "questions": [
+                            {
+                                "id": "DI1",
+                                "text": "Has your company implemented policies and/or rules for managing diversity, inclusion, and equal opportunities for various categories of employees?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "DI2",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "DI3",
+                                "text": "Does your company measure the ESG performance of its suppliers?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "DI4",
+                                "text": "Does your company monitor the trend of new hires and employee turnover?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "DI5",
+                                "text": "Does your company measure the ESG performance of its suppliers?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "DI6",
+                                "text": "Is your company able to describe the composition and organization of its management and control bodies (e.g., the Board of Directors, the Executive Committee, or the Management Board)?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-S-1",
+                        "name": "Occupational health and safety",
+                        "questions": [
+                            {
+                                "id": "EO1",
+                                "text": "Has your company adopted a policy or guidelines for managing aspects related to employee health and safety?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-S-2",
+                        "name": "Human rights",
+                        "questions": [
+                            {
+                                "id": "HU1",
+                                "text": "Has your company adopted a policy or guidelines for managing human rights-related issues and associated risks (e.g., discrimination, child labor, forced labor)?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "HU2",
+                                "text": "Does your company have tools or channels to report cases of discrimination or human rights violations?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-S-3",
+                        "name": "Health and safety",
+                        "questions": [
+                            {
+                                "id": "HS1",
+                                "text": "Has your company adopted a policy or guidelines for managing aspects related to employee health and safety?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "HS2",
+                                "text": "Does your company monitor and measure the health and safety of workers (e.g., injuries, occupational diseases)?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "HS3",
+                                "text": "Has your company adopted a policy or guidelines for managing aspects related to employee health and safety?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "HS4",
+                                "text": "Does your company have management systems for health and safety?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-S-4",
+                        "name": "Relevant sustainability topics",
+                        "questions": [
+                            {
+                                "id": "TS2",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-S-5",
+                        "name": "Impacts, risks and opportunities",
+                        "questions": [
+                            {
+                                "id": "IRO1",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Environment",
+                "topics": [
+                    {
+                        "id": "T-1-E-0",
+                        "name": "Climate change",
+                        "questions": [
+                            {
+                                "id": "CC1",
+                                "text": "Has your company adopted a policy or guidelines for managing aspects related to climate change mitigation and adaptation?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "CC2",
+                                "text": "Does your company measure and monitor its GHG emissions?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "CC3",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "CC4",
+                                "text": "Does your company measure and monitor its own energy consumption?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "CC5",
+                                "text": "Does your company measure and monitor its own energy consumption?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-E-1",
+                        "name": "Water and effluents",
+                        "questions": [
+                            {
+                                "id": "AR1",
+                                "text": "Does your company measure and monitor the use of water resources (e.g., withdrawals, consumption)?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-E-2",
+                        "name": "Waste",
+                        "questions": [
+                            {
+                                "id": "RC1",
+                                "text": "Has your company adopted a policy or guidelines for waste management and the circular economy?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "RC2",
+                                "text": "Does your company measure and monitor the quantity of waste produced?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-1-E-3",
+                        "name": "Impacts, risks and opportunities",
+                        "questions": [
+                            {
+                                "id": "IRO2",
+                                "text": "Does your company measure and monitor the use of water resources (e.g., withdrawals, consumption)?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Maturity",
+        "pillars": [
+            {
+                "name": "Governance",
+                "topics": [
+                    {
+                        "id": "T-2-G-0",
+                        "name": "Company model and strategy (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RBM9",
+                                "text": "Are the ownership and company leadership actively involved and regularly informed about the company's ESG results (for example, being enabled on the Open-es platform)?",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-G-1",
+                        "name": "Governance",
+                        "questions": [
+                            {
+                                "id": "Q-49",
+                                "text": "Has your company identified a preliminary\nlist of relevant sustainability themes?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-56",
+                                "text": "Specify the industry sector of your\ncompany (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-57",
+                                "text": "Is your company able to specify its main\nactivities?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-58",
+                                "text": "Has your company defined sustainability\nobjectives?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nSUSTAINABILITY OBJECTIVES COMMUNICATED\nEXTERNALLY, INCLUDING RELATED TARGETS AND\nSCOPE)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-59",
+                                "text": "Specify the sustainability objectives\n(environmental, social, and governance)\nthat your company has achieved or\nintends to pursue.(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nSUSTAINABILITY TARGETS ACHIEVED AND THE FUTURE\nTARGETS THAT THE COMPANY HAS SET)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-60",
+                                "text": "Are the sustainability targets set by your\ncompany clearly integrated into corporate\nstrategies and policies?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nCORRELATION BETWEEN SUSTAINABILITY TARGETS\nAND COMPANY PROCESSES - E.G., WHICH BUSINESS\nACTIVITIES HAVE BEEN IMPLEMENTED TO ACHIEVE\nTARGETS)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-62",
+                                "text": "Does your company disclose its\nperformance on sustainability issues?\nCompany\nmodel and\nstrategy (SPECIFY IN THE DESCRIPTION FIELD WHERE THE\nDOCUMENT IS AVAILABLE)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-63",
+                                "text": "Is the company able to describe its\nbusiness model, the main elements of the\nvalue chain, and the company's position\nwithin it?(ATTACH OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD FOR MORE INFORMATION ON THE COMPOSITION\nOF YOUR VALUE CHAIN)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-64",
+                                "text": "The sustainability information declared by\nyour company is on: (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-65",
+                                "text": "Is your company able to specify the\ncomposition and organization of the\nadministrative, management, and control\nbodies?INFORMATION REGARDING THE ORGANIZATION AND\nCOMPOSITION OF EXECUTIVE AND NON-EXECUTIVE\nMANAGEMENT BODIES - E.G., ORGANIZATIONAL CHART,\nINFORMATION ABOUT THE PRESENCE OF WORKER\nREPRESENTATIVES, THE PERCENTAGE OF INDEPENDENT\nBOARD MEMBERS, ETC.)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-66",
+                                "text": "Do the members of the management\nbodies have direct or indirect\ncompetencies in sustainability?(ATTACH OR DESCRIBE IN THE DESCRIPTION FIELD THE TRAINING ACTIVITIES AVAILABLE IN ESG MATTERS)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-67",
+                                "text": "Is there a dedicated function for\nsustainability matters in your company?(ATTACH AN ORGANIZATIONAL CHART SHOWING THE\nPRESENCE OF A FUNCTION DEDICATED TO\nSUSTAINABILITY ISSUES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-69",
+                                "text": "Are sustainability metrics that impact\nremuneration mechanisms included in the\nmanagement performance measurements\nof your company?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-70",
+                                "text": "Regarding the sustainability metrics\nincluded in performance measurements,\nwhich of these remuneration mechanisms\nhas your company adopted?(ATTACH OR DESCRIBE IN THE DESCRIPTION FIELD THE\nMAIN FEATURES OF THE INCENTIVE SYSTEMS AND THE\nPORTION OF VARIABLE REMUNERATION DEPENDENT\nON SUSTAINABILITY OBJECTIVES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-71",
+                                "text": "Specify the percentage of investments\nallocated to green and/or social activities\ncompared to the total investments of your\ncompany. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-75",
+                                "text": "Is your company able to describe the main\nrisks and opportunities related to\nsustainability issues that it faces in its\nsector?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nMAIN RISK FACTORS RELATED TO SUSTAINABILITY\nISSUES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-76",
+                                "text": "Specify the relevant risks identified and\nmonitored by your company. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION).",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-77",
+                                "text": "Does your company monitor how risks\nrelated to sustainability matters vary over\ntime, also in relation to the prevention and\nmitigation objectives defined by your\ncompany?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-78",
+                                "text": "In identifying risks and opportunities, has\nyour company considered the impacts in\nwhich it is involved through its activities or\nbusiness relationships?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-81",
+                                "text": "Specify the beneficiaries of your\ncompany's sustainable development\ninitiatives (e.g., local partnerships for the\ncreation/strengthening of education\nservices, equal participation in STEM\ncourses, corporate volunteer activities,\nsponsorships, etc.)(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nMAIN SUSTAINABLE DEVELOPMENT INITIATIVES\nIMPLEMENTED BY YOUR COMPANY)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-82",
+                                "text": "For which of these topics have you\nassessed the potential financial effects\nrelated to your company?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-83",
+                                "text": "Has your company implemented anticorruption\nprocedures?(ATTACH A PROCEDURE OR AN ALTERNATIVE\nDOCUMENT THAT SERVES THE SAME FUNCTION, AND\nSPECIFY WHICH TOOLS AND COMMUNICATION\nCHANNELS ARE USED TO COMMUNICATE POLICIES TO\nTHE FOLLOWING GROUPS)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-85",
+                                "text": "Has your company implemented a\ntraining program on anti-corruption\nprocedures?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-87",
+                                "text": "Has your company implemented tools\nand/or processes to monitor and measure\nthe risk of corruption and the effectiveness\nof anti-corruption initiatives?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nTOOLS AND PROCESSES USED TO MONITOR THE RISK\nOF CORRUPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-89",
+                                "text": "Specify the number of corruption incidents\nthat occurred within your company,\nbroken down by year.(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD OF THE TYPE AND NUMBER OF\nINCIDENTS)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-90",
+                                "text": "Does your company implement initiatives\nto develop and promote corporate\nculture?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-91",
+                                "text": "Does your company disclose information\non its payment practices with respect to\nbusiness partners?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-92",
+                                "text": "Does your company involve its value chain\n(suppliers and clients) on sustainability\nissues?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE MAIN VALUE CHAIN\nENGAGEMENT MODALITIES AND PURPOSES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-93",
+                                "text": "Is your company using a platform to\nengage its supplies and measure their\nsustainability performances?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-94",
+                                "text": "Indicate your company's supplier\ninvolvement strategies.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-95",
+                                "text": "Indicates for Environment, Social and\nGovernance:\nGeneral requests to stimulate\nawareness among your suppliers\nObjectives and/or evolution criteria on\nyour suppliers(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-96",
+                                "text": "Is your company able to transmit\nsustainability principles to suppliers after\nthe first level of the supply chain?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE MODALITIES AND THE\nTRANSMISSION FREQUENCY ABOUT SUSTAINABILITY\nPRINCIPLE. DESCRIBE THE VERIFICATION MODALITIES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-97",
+                                "text": "Indicate the aspects related to products\nand services' impacts your company\ninforms its customers about (PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE IMPACTS GENERATED BY YOUR\nPRODUCTS AND SERVICES)",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-G-2",
+                        "name": "Strategy & Stakeholders",
+                        "questions": [
+                            {
+                                "id": "Q-50",
+                                "text": "Has your company identified the main\nstakeholders related to its activities?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-51",
+                                "text": "Does your company engage the main\nstakeholders on relevant sustainability\nissues?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-52",
+                                "text": "Has your company conducted an internal\nmateriality assessment to identify relevant\nESG (environmental, social, and\ngovernance) aspects for itself and its\nstakeholders?(PLEASE ATTACH DOCUMENTATION OR PROVIDE IN THE\nDESCRIPTION FIELD A DESCRIPTION OF THE\nMETHODOLOGY USED IN THE MATERIALITY\nASSESSMENT)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-53",
+                                "text": "From your materiality analysis, which of\nthese sustainability issues have been\nidentified as relevant for your company? (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-54",
+                                "text": "Does your company integrate the interests\nof stakeholders and relevant ESG aspects\nwithin its strategy?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-55",
+                                "text": "Indicate the ESG aspects considered\nrelevant for each stakeholder category (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-72",
+                                "text": "Starting from the initial list of relevant\nsustainability themes, has the company\nassessed the associated impacts?(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD REGARDING THE MATERIALITY\nANALYSIS, PROVIDING AN OVERVIEW OF THE\nPROCESSES TO IDENTIFY, ASSESS, AND MONITOR\nIMPACTS, RISKS, AND OPPORTUNITIES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-73",
+                                "text": "For which of these matters and\nstakeholders is your company able to\ndescribe the process implemented to\nidentify and assess impacts, risks, and\nopportunities?(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD OF HOW IMPACTS, RISKS, AND\nOPPORTUNITIES HAVE BEEN IDENTIFIED, PRIORITIZED,\nAND MONITORED)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-74",
+                                "text": "For which of the following matters and\nstakeholders is your company able to\ndescribe its impacts, including a\ndescription of where in the business model,\noperations, and value chain these are\nconcentrated?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-79",
+                                "text": "Specify the categories of stakeholders\nalong the value chain that have been\nconsidered in the identification and\nmanagement of key risks and\nopportunities related to sustainability\nissues. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-80",
+                                "text": "Does your company monitor the indirect\neconomic impacts it may generate on\nstakeholders and in the countries where it\noperates?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nTOOLS AND METHODOLOGIES USED TO MONITOR THE\nINDIRECT ECONOMIC IMPACTS THAT THE\nORGANIZATION MAY EXERT ON STAKEHOLDERS)",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-G-3",
+                        "name": "Sustainability Reporting",
+                        "questions": [
+                            {
+                                "id": "Q-61",
+                                "text": "Has your company implemented a data\ncollection, measurement, and reporting\nsystem for the sustainability targets it has\nset?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD\nINFORMATION ABOUT THE PLATFORM USED FOR DATA\nCOLLECTION, MEASUREMENT, AND REPORTING OF\nTARGETS)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-68",
+                                "text": "Are the results related to sustainability\nissues regularly reported to the highest\nlevels of the company and corporate\ngovernance bodies, where applicable?",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-84",
+                                "text": "Within your company, do investigators or\nthe investigation committee have separate\nroles from those managing the reported\naction?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-100",
+                                "text": "Has your company established an internal\ncontrol and management system\nregarding the sustainability reporting\nprocess?(ATTACH DOCUMENTATION OR DESCRIBE THE MAIN\nCHARACTERISTICS OF THE CONTROL AND\nMANAGEMENT SYSTEM AND THE APPROACH TAKEN\nFOR RISK ASSESSMENT)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-107",
+                                "text": "Within the organs of administration,\nmanagement, and oversight, are there\nmembers who, in the previous two years\ntheir appointment in the current reporting\nperiod, held a comparable position in the\npublic administration?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-G-4",
+                        "name": "REPORTING",
+                        "questions": [
+                            {
+                                "id": "Q-98",
+                                "text": "Is the company able to provide a\ndescription of key types of products,\nservices offered, and significant customers\nand/or markets?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-101",
+                                "text": "Describe how the administration,\nmanagement, and control bodies exercise\noversight on sustainability issues and in\nthe processes to manage impacts, risks,\nand opportunities.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-102",
+                                "text": "Specify the revenues derived from the\nfollowing sectors:(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD, ADDING, WHERE POSSIBLE, A\nBREAKDOWN OF REVENUES FROM THE SECTORS AS\nIDENTIFIED BY THE ESRS)",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-G-5",
+                        "name": "Company\nmodel and\nstrategy",
+                        "questions": [
+                            {
+                                "id": "Q-103",
+                                "text": "Indicate the number of convictions for\ncorruption and the amount of fines for\nviolations of laws against corruption.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-104",
+                                "text": "Indicate the average time taken by the\ncompany to pay an invoice to the supplier\nand provide a description of the\ncompany's standard payment terms in\nterms of days for the main supplier\ncategories.(PLEASE ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE FIELD DESCRIBING THE COMPANY'S\nSTANDARD PAYMENT TERMS IN TERMS OF DAYS FOR\nTHE MAIN SUPPLIER CATEGORIES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-105",
+                                "text": "Indicate the number of pending legal\nproceedings currently due to payment\ndelays.(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, INCLUDING\nADDITIONAL INFORMATION NECESSARY TO PROVIDE\nSUFFICIENT CONTEXT)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-106",
+                                "text": "Specify the total monetary value of\npolitical contributions and financial\nlobbying, both direct and indirect, provided\nby the company(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, SPECIFYING THE\nESTIMATION METHODS USED AND SUMMARIZING THE\nTOPICS ADDRESSED IN LOBBYING ACTIVITIES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-108",
+                                "text": "Does your company receive financial aid\nfrom the state or from public bodies?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION INFORMATION RELATED TO\nFINANCIAL AID RECEIVED FROM THE STATE OR FROM\nPUBLIC BODIES)",
+                                "pillar": "Governance"
+                            },
+                            {
+                                "id": "Q-109",
+                                "text": "Indicate the total financial resources\nobtained from the state or from public\nagencies (e.g. tax breaks and deductions;\ngrants and subsidies for investments and\nresearch and development, and other\nrelevant forms of contributions; awards;\nroyalty exemptions; financial assistance\nfrom Export Credit Agencies (ECAs);\nfinancial incentives; and other financial\nbenefits received or that may be received\nby any government agency for any transaction)",
+                                "pillar": "Governance"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Social",
+                "topics": [
+                    {
+                        "id": "T-2-S-0",
+                        "name": "Human rights (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RHU3",
+                                "text": "Does your human rights policy explicitly address:",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "RHU5",
+                                "text": "Has your company adopted a policy or guidelines for managing aspects related to employee health and safety?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "RHU7",
+                                "text": "Does your company monitor and measure the health and safety of workers (e.g., injuries, occupational diseases)?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-1",
+                        "name": "Company model and strategy (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RBM1",
+                                "text": "Does your company have tools or channels to report cases of discrimination or human rights violations?",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "RBM3",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-2",
+                        "name": "Human rights",
+                        "questions": [
+                            {
+                                "id": "HU3",
+                                "text": "The human rights policy includes the following categories of stakeholders:",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-3",
+                        "name": "Governance",
+                        "questions": [
+                            {
+                                "id": "Q-86",
+                                "text": "Specify the percentages of executive body\nmembers and employees who have\nreceived training on anti-corruption\npolicies and procedures. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-88",
+                                "text": "Is your company able to describe its\ninternal and external mechanisms for:\nVerifying the implementation of ethical\nand legal behavior by its employees\nTracking illicit, unethical behaviors, or\nthe lack of integrity. (ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nINTERNAL MECHANISMS TO MITIGATE THE RISK OF\nCORRUPTION)",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-4",
+                        "name": "Sustainability Reporting",
+                        "questions": [
+                            {
+                                "id": "Q-99",
+                                "text": "Does your company conduct due diligence\nactivities and clearly specify them in the\nSustainability Report?(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD OF THE DUE DILIGENCE\nACTIVITIES CONDUCTED BY YOUR COMPANY AND ON\nWHICH BUSINESS PROCESSES THEY ARE PERFORMED -\nE.G., HUMAN RIGHTS DUE DILIGENCE)",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-5",
+                        "name": "Diversity & Inclusion",
+                        "questions": [
+                            {
+                                "id": "Q-110",
+                                "text": "Has your company adopted policies\nand/or rules for managing the issues of\ndiversity, inclusion, and equal opportunities\nfor the various categories of employees?(PLEASE ATTACH YOUR COMPANY POLICY OR AN\nALTERNATIVE FILE DOCUMENTING YOUR POLICY - I.E.\nCODE OF ETHICS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-111",
+                                "text": "Indicate the percentage of men and the\npercentage of women in your company.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-112",
+                                "text": "Specify the percentage of employees by\ntype of contract and gender distribution",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-113",
+                                "text": "Does your company monitor the progress\nof new hires and employee turnover?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE MONITORING TOOLS RELATED\nTO EMPLOYEE TURNOVER AND NEW HIRES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-114",
+                                "text": "Does your company monitor the progress\nof new hires and employee turnover by\nrelevant categories (e.g. gender, age,\netc.)?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE MONITORING TOOLS RELATED\nTO EMPLOYEE TURNOVER AND NEW HIRES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-115",
+                                "text": "Indicate the number of employees hired\nand the turnover of man and women,\ndivided by the following age groups:\n< 30 years\nbetween 30 and 50 years\n> 50 years\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-116",
+                                "text": "Within your company, what is the ratio\nbetween women average salary and men\naverage salary?(REPORT AS AN ATTACHMENT OR IN THE DESCRIPTION\nFIELD THE CALCULATION METHODOLOGY FOR THE\nINDICATED RATIO)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-117",
+                                "text": "Is the ratio between women average\nsalary and men average salary\nhomogenous in all your company's sites?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-118",
+                                "text": "Indicate, both for men and for women, the\nratio between entry salary and local\nminimum salary.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-119",
+                                "text": "Is your company able to indicate the ratio\nbetween the entry salary and the local\nminimum salary for other relevant\ncategories? (For example, for ethnic\ngroups, category of employees, etc.)(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-120",
+                                "text": "Indicate the ratio between the CEO's\nannual remuneration (in the lack thereof,\nindicate a leading figure within your\ncompany) and the median values of the\nannual remuneration of all the employees\n(CEO or leading figure excluded)(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-121",
+                                "text": "Indicate the percentage of women in\nmanagerial roles compared to all the\nmanagerial roles in your company. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-122",
+                                "text": "Indicate the average ratio between the\nnumber of male and female\nrepresentatives in the administration,\nmanagement, and control bodies.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-123",
+                                "text": "Is your company able to report other\ndiversity indicators? For example:\nThe percentage of employees by\ncategory (workers, employees,\nmanagers)\nthe percentage of employees by age\n(under 30 years, between 30 and 50,\nolder than 50)\nother (ethnicity, protected classes,...).(PLEASE REPORT IN THE ATTACHMENT AND/OR IN THE\nDESCRIPTION WHICH CATEGORIES YOUR COMPANY IS\nMONITORING AND INDICATE THE RESPECTIVE\nPERCENTAGES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-124",
+                                "text": "Specify the total number of non-employee\nworkers in the company, including those\nwith contracts for labor provision (such as\nfreelancers) and those provided by firms\nengaged in personnel research or\nselection.(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, SPECIFYING THE\nMOST COMMON TYPES OF NON-EMPLOYEE WORKERS\nAND AN EXPLANATION OF THE METHODOLOGIES AND\nASSUMPTIONS USED FOR THE CALCULATION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-125",
+                                "text": "Does your company promote the inclusion\nof disadvantaged workers?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-126",
+                                "text": "Does your company promote female\nempowerment?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-127",
+                                "text": "Does your company support youth\nentrepreneurship?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-128",
+                                "text": "Has your company adopted a policy or\nguidelines for managing issues related to\nhuman rights and associated risks (e.g.,\ndiscrimination, child labor, forced labor)?(ATTACH POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF A POLICY)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-130",
+                                "text": "Is the human rights policy adopted by\nyour company in line with internationally\nrecognized standards for the covered\ncategories (e.g., ILO, UN)?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-132",
+                                "text": "Indicate the number of human right risks\nderived from your company's activities(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nTOTAL NUMBER OF IDENTIFIED RISKS RELATED TO\nHUMAN RIGHTS ISSUES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-133",
+                                "text": "Indicate the number of human rights risks\nidentified in relation to the countries where\nyour company operates.(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nMODEL FOR PRIORITIZING HUMAN RIGHTS\nINTERVENTIONS AND INDICATE HOW RISK ANALYSES\nARE MANAGED)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-135",
+                                "text": "Does your company have measures in\nplace to prevent human rights risks and/or\ncorrect any negative impact?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nADOPTED MEASURES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-136",
+                                "text": "Indicate the activities and the typologies of\nsuppliers your company considers at risk\nconcerning human rights.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-137",
+                                "text": "Does your company check the minimum\nage limits of job applicants?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-138",
+                                "text": "Does your company abstain from all\nforms of forced labour (e.g. withholding\nstaff identity documents, withholding part\nof staff wages, restricting workers'\nfreedom to leave the workplace at the end\nof their shift, ...)?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-139",
+                                "text": "Does your company conduct audits to\nmonitor and/or verify the adequacy of the\nsalary of its staff?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, INDICATING\nWHETHER ALL EMPLOYEES RECEIVE ADEQUATE\nSALARIES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-140",
+                                "text": "Does your company use overtime? If yes,\nplease indicate the average number of\novertime hours per week, otherwise\nindicate 0.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-141",
+                                "text": "Are overtime hours paid more than\nstandard hourly pay?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-142",
+                                "text": "Does your company allow its employees\nto join trade unions?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-143",
+                                "text": "Does your company have tools and/or\ncomplaint procedures to report human\nrights violations?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-144",
+                                "text": "Does the company have policies in place\nto protect individuals using complaint\nchannels from potential retaliation?(ATTACH POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF A POLICY)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-145",
+                                "text": "Indicate the number of complaints\nreceived regarding human rights issues.(ATTACH OR INCLUDE IN THE DESCRIPTION FIELD THE\nTYPES OF COMPLAINTS RECEIVED AND AN\nEXPLANATION OF THE ACTIONS TAKEN)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-146",
+                                "text": "Does your company offer additional social\nprotection systems (sickness,\nunemployment, workplace injury, parental\nleave, retirement, etc.) in addition to public\nprograms (if applicable)?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD. IF NOT ALL\nEMPLOYEES ARE COVERED BY SOCIAL PROTECTION\nSYSTEMS, SPECIFY IN THE DESCRIPTION THE COUNTRIES\nWHERE EMPLOYEES DO NOT HAVE SUCH COVERAGE)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-147",
+                                "text": "Has your company established employee\ntraining policies?(PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE INFORMATION RELATED TO\nTRAINING CLASSES AND TRAINING PLANNING)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-148",
+                                "text": "Has your company defined policies for\nspecific training for its employees on\nsustainability issues? HERE ARE SOME POSSIBLE ANSWER Yes, covering all ESG dimensions. (PLEASE INDICATE IN THE ATTACHMENT AND/OR IN\nTHE DESCRIPTION THE INFORMATION RELATED TO\nTRAINING CLASSES AND TRAINING PLANNING ON\nSUSTAINABILITY ISSUES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-149",
+                                "text": "Indicate the average value of training\nhours carried out by each employee. (PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-150",
+                                "text": "Indicate the average value of training\nhours carried out by each employee.(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-151",
+                                "text": "Has your company adopted policies\nregarding employee's wellbeing?(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-152",
+                                "text": "Has your company defined parameters to\nmeasure and monitor the employees'\nwellbeing? [Some parameters are: the\nnumber of deaths resulting from\noccupational diseases; the number of\nrecordable occupational disease; the\ntypologies of the main occupational\ndiseases of all the workers and employees;\nthe percentage of employees taking part to\nhealth and well-being programs;\nabsenteeism rate; number of remote\nworking for each employee; welfare\ninitiatives with the company, etc.]\n(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD\nPARAMETERS AND METHODOLOGIES USED TO\nMEASURE AND MONITOR THE WELL-BEING OF\nWORKERS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-153",
+                                "text": "Indicate the percentage of employees\nparticipating in health and wellness related\nprograms\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-154",
+                                "text": "Indicate the employee absenteeism rate\n[(nr of not worked hours/ nr of working\nhours)*100]\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-155",
+                                "text": "Has your company adopted a policy or\nguidelines for managing aspects related\nto the health and safety of employees?\n(ATTACH WORKPLACE HEALTH AND SAFETY\nMANAGEMENT POLICY OR ALTERNATIVE DOCUMENT\nFULFILLING THE FUNCTION OF A POLICY)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-156",
+                                "text": "Does your company monitor and measure\nthe health and safety of workers (e.g.,\naccidents, occupational illnesses)?\n(ATTACH OR INCLUDE IN THE DESCRIPTION FIELD\nPARAMETERS AND METHODOLOGIES USED TO\nMEASURE AND MONITOR THE HEALTH AND SAFETY OF\nWORKERS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-157",
+                                "text": "Is your company able to indicate the\nmethods used to facilitate workers' access\nto non-work-related medical and health\ncare services?\n(ATTACH OR INCLUDE IN THE DESCRIPTION FIELD THE\nMETHODS USED BY YOUR COMPANY TO FACILITATE\nWORKERS' ACCESS TO MEDICAL AND HEALTH CARE\nSERVICES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-158",
+                                "text": "For both employees and non-employees\n(but whose work and/or workplace are\nunder the company's control), indicate the\nnumber and/or rate of: Deaths resulting\nfrom workplace accidents, Work-related\ninjuries with severe consequences\n(excluding deaths), Recordable workplace\ninjuries. Also, specify the total number of\nhours worked.\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-159",
+                                "text": "Indicate the number of reports of\noccupational diseases and the number of\nrecordable cases of occupational diseases\nfor employees only. (If no cases have\noccurred, input 0)\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-161",
+                                "text": "Indicate, for both employees and nonemployees,\nthe number of workplace\ninjuries divided into the following types of\ninjury:\nTemporary: resulting in temporary\nabsolute incapacity lasting more than\nthree days without permanent effects\nPermanent: resulting in permanent effects\nexceeding 5%\nFatal: resulting in the death of the injured\nparty\n(If no cases of injury have occurred, input\n0)\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-162",
+                                "text": "Specify the % of employees with\ndisabilities, broken down by gender\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-163",
+                                "text": "Indicate the % of employees eligible for\nfamily leave and the % of employees who\nhave taken family leave (broken down by\ngender)\n(PLEASE SHOW EVIDENCE",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-166",
+                                "text": "Is your company able to provide the total\nnumber of employees per country?\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-167",
+                                "text": "Specify the % of employees who have\nparticipated in regular performance and\ncareer development reviews (broken down\nby gender)\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-168",
+                                "text": "Indicate the % of total employees covered\nby collective agreements\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-169",
+                                "text": "Indicate the number of serious human\nrights incidents (such as forced labor or\nchild labor) related to the company's\nworkforce, along with the amount of\nfines/penalties/compensation.\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION FIELD\nFOR FURTHER DETAILS ON THE TYPES OF INCIDENTS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-170",
+                                "text": "Indicate the number of\nincidents/complaints related to the\ncompany's own workforce (e.g.,\ndiscrimination and harassment), along with\nfines/penalties/compensation\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION FIELD\nFOR FURTHER DETAILS ON THE TYPES OF INCIDENTS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-171",
+                                "text": "Your human rights policy clearly outlines:\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD, DETAILING HOW THE SELECTED THEMES ARE\nADDRESSED WITHIN THE POLICY)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-176",
+                                "text": "Indicate the percentage of workers\ncovered by the company's health and\nsafety management system according to\nlegal requirements and/or recognized\nstandards or guidelines\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-178",
+                                "text": "Has your company defined clear goals for\nreducing greenhouse gas emissions and\nimplemented monitoring/management\nprocesses?\n(PROVIDE DOCUMENTATION ATTACHED AND/OR\nPROVIDE EVIDENCE IN THE DESCRIPTION FIELD,\nDESCRIBING HOW THESE OBJECTIVES ARE COMPATIBLE\nWITH THE GOAL OF THE PARIS AGREEMENT)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-179",
+                                "text": "Does your company measure and monitor\nits greenhouse gas emissions?(IN THE ATTACHMENT OR DESCRIPTION FIELD, PLEASE\nPROVIDE THE TOOLS AND METHODOLOGIES EMPLOYED\nFOR MEASURING RELEVANT GREENHOUSE GASES)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-180",
+                                "text": "Indicate the tons of Scope 1 greenhouse\ngas emissions (expressed in tCO2e)\naccording to the GHG Protocol. (ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-181",
+                                "text": "Indicate the tons of Scope 2 greenhouse\ngas emissions (expressed in tCO2e)\naccording to the GHG Protocol. (ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-182",
+                                "text": "Indicate the tons of Scope 3 greenhouse\ngas emissions (expressed in tCO2e)\naccording to the GHG Protocol. (ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-183",
+                                "text": "Indicate the tons of greenhouse gas\nemissions (expressed in tCO2e) detailed\nby year.",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-190",
+                                "text": "Indicate the level of GHG removals and\nstorage in metric tons of CO2 resulting\nfrom projects developed within the\nunderaking's own operations or along the\nvalue chain. (ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-197",
+                                "text": "Has your company adopted a policy or\nguidelines for managing aspects related\nto biodiversity and ecosystems?(ATTACH THE POLICY OR AN ALTERNATIVE DOCUMENT\nTHAT SERVES THE FUNCTION OF A POLICY)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-198",
+                                "text": "Has your company defined clear\nobjectives related to biodiversity and\necosystems?(PLEASE ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, INDICATING\nWHICH ECOLOGICAL THRESHOLDS HAVE BEEN USED,\nTHE GEOGRAPHICAL SCOPE OF THESE OBJECTIVES,\nAND THE USE OF BIODIVERSITY OFFSETS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-199",
+                                "text": "Does your company monitor the impacts\nof its activities on biodiversity (e.g., land\nuse, number and hectares of owned,\nleased, or managed sites located within or\nadjacent to protected areas and/or areas\nof significant biodiversity)?(ATTACH DOCUMENTATION OR PROVIDE IN THE\nDESCRIPTION FIELD THE TOOLS AND METHODOLOGIES\nUSED TO MONITOR LAND USE)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-200",
+                                "text": "Indicate the number and area (in\nhectares) of owned, leased, or managed\nsites located within or adjacent to\nprotected areas and/or areas of\nsignificant biodiversity (KBA)(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-201",
+                                "text": "Provide in hectares:\nTotal use of land\nTotal sealed area\nTotal nature-oriented area on site\nTotal nature-oriented area off site",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-202",
+                                "text": "Does the company conduct operations\nthat have effects on threatened species?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-203",
+                                "text": "Is your company able to identify relevant\nnegative impacts (current or potential)\nrelated to soil degradation, desertification,\nor soil sealing?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Social"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-S-6",
+                        "name": "Strategy & Stakeholders",
+                        "questions": [
+                            {
+                                "id": "Q-129",
+                                "text": "The human rights policy includes the\nfollowing categories of stakeholders:(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-131",
+                                "text": "Has your company involved stakeholders\nin the creation of the human rights policy\nand/or guideline?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD REGARDING THE\nCONSULTATION PROCESS WITH STAKEHOLDERS)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-134",
+                                "text": "On the basis of the identified risks, has the\ncompany defined clear objectives on the\nreduction of possible human rights\nviolations?(ATTACH OR PROVIDE IN THE DESCRIPTION FIELD THE\nIDENTIFIED OBJECTIVES, ALONG WITH THE PROCESS\nFOR SETTING THESE OBJECTIVES, SPECIFYING\nWHETHER AND HOW THE COMPANY HAS INTERACTED\nWITH ITS STAKEHOLDERS ON THESE ASPECTS.)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-164",
+                                "text": "Describe if and how your company's\nstrategy and business model contribute to\ncreating, exacerbating, or mitigating\nsignificant impacts on its workforce\n(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, ALSO INDICATING\nHOW STAKEHOLDERS ARE INVOLVED IN THIS MATTER)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-165",
+                                "text": "Specify the current and potential impacts\non your workforce resulting from the\ncompany's strategy and business model,\nand/or how these influence the strategy\nand business model, contributing to their\nadjustment\n(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD, ALSO INDICATING\nHOW STAKEHOLDERS ARE INVOLVED IN THIS MATTER)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-172",
+                                "text": "Describe the general processes for\nengaging each category of stakeholders\nregarding the current and potential\nimpacts that affect them\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-173",
+                                "text": "Describe the processes the company has\nestablished to remedy or cooperate in\nremedying the negative impacts on each\ncategory of stakeholders, as well as the\nchannels available to exp\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)ress concerns",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-174",
+                                "text": "Describe how your company addresses\nrelevant impacts on each stakeholder\ncategory, manages risks, and monitors the\neffectiveness of these actions\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            },
+                            {
+                                "id": "Q-175",
+                                "text": "Describe the objectives that your\ncompany has set to reduce negative\nimpacts, enhance positive impacts, and\nmanage risks and opportunities related to\neach stakeholder category\n(ATTACH DOCUMENTATION AS AN ENCLOSURE\nAND/OR PROVIDE EVIDENCE IN THE DESCRIPTION\nFIELD)",
+                                "pillar": "Social"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Environment",
+                "topics": [
+                    {
+                        "id": "T-2-E-0",
+                        "name": "Climate change (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RCC2",
+                                "text": "Has your company adopted a policy or guidelines for waste management and the circular economy?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-E-1",
+                        "name": "Water and effluents (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RAR1",
+                                "text": "Are the ownership and company leadership actively involved and regularly informed about the company's ESG results (for example, being enabled on the Open-es platform)?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "RAR2",
+                                "text": "Does your company measure and monitor the use of water resources (e.g., withdrawals, consumption)?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-E-2",
+                        "name": "Waste (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RRC1",
+                                "text": "Has your company identified the key stakeholders who influence or are affected by its activities (e.g., employees, customers, suppliers, local communities, etc.)?",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "RRC6",
+                                "text": "Does your human rights policy explicitly address:",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-E-3",
+                        "name": "Company model and strategy (Maturity)",
+                        "questions": [
+                            {
+                                "id": "RBM10",
+                                "text": "Has your company adopted a policy or guidelines for waste management and the circular economy?",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "T-2-E-4",
+                        "name": "Diversity & Inclusion",
+                        "questions": [
+                            {
+                                "id": "Q-160",
+                                "text": "Indicate, for both employees and nonemployees,\nthe main types of\noccupational diseases, such as diseases\nfrom chemical agents (e.g., metals,\nhydrocarbons, acids...), diseases from\nphysical agents (e.g., noise, vibrations,\nmanual handling of loads, radiation...),\ndiseases from biological agents (e.g.,\nbacteria, viruses...), respiratory diseases\n(silicosis, asbestosis, bronchial asthma,\netc.), skin diseases (e.g., allergic or contact\ndermatitis, etc.), tumors (neoplasms from\nasbestos, chromium...), diseases due to\ndysfunction in work organization (e.g.,\nstress). If no cases have occurred, input 0\nand leave the type field empty.\n(PLEASE SHOW EVIDENCE IN THE ATTACHMENT\nAND/OR IN THE DESCRIPTION)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-177",
+                                "text": "Has your company adopted a policy or\nguidelines for managing aspects related\nto climate change?\n(ATTACH A POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF A POLICY)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-184",
+                                "text": "Is your company capable of analyzing the\nprimary financial effects of relevant\nphysical risks and transition climaterelated\nrisks?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-185",
+                                "text": "Is your company able to identify climaterelated\nphysical and transition risks?(ATTACH THE METHODOLOGY USED TO IDENTIFY\nPHYSICAL AND TRANSITION RISKS, OR PROVIDE DETAILS\nIN THE DESCRIPTION FIELD. ALSO, SPECIFY THE\nIDENTIFIED PHYSICAL AND/OR TRANSITION RISKS -\nCONTEXT ANALYSIS)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-186",
+                                "text": "Has your company conducted an analysis\nof the resilience of its strategy and\nbusiness model regarding climate change?\n(ATTACH THE DOCUMENT OR PROVIDE DETAILS IN THE\nDESCRIPTION FIELD, INDICATING HOW AND WHEN THE\nRESILIENCE ANALYSIS WAS CONDUCTED - INCLUDING\nTHE USE OF CLIMATE SCENARIO ANALYSIS)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-187",
+                                "text": "Has your company developed a transition\nplan to mitigate climate change?(PLEASE ATTACH THE TRANSITION PLAN OR\nALTERNATIVE DOCUMENT SERVING AS THE TRANSITION\nPLAN AND DESCRIBE HOW YOUR TRANSITION PLAN\nALIGNS WITH YOUR COMPANY'S BUSINESS STRATEGY. IN\nCASE A TRANSITION PLAN HAS NOT YET BEEN\nADOPTED, INDICATE IN THE DESCRIPTION BOX WHEN IT\nWILL BE ADOPTED)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-188",
+                                "text": "Has your company implemented the\nrecommendations of the Task Force on\nClimate-related Financial Disclosures\n(TCFD) by defining objectives in line with\nthe Paris Agreement?(ATTACH IN THE DESCRIPTION FIELD ANY\nIMPLEMENTATIONS OF TCFD RECOMMENDATIONS)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-189",
+                                "text": "Does your company use carbon credits to\noffset CO2 and other greenhouse gas\nemissions generated by its activities?(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-191",
+                                "text": "Specify the reduction in GHG emissions\nand GHG absorptions in metric tons of\nCO2 resulting from climate change\nmitigation projects outside of the value\nchain funded or intended to be funded\nthrough the purchase of carbon credits. (ATTACH POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF POLICY)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-192",
+                                "text": "Has your company adopted a policy or\nguidelines for managing aspects related\nto energy efficiency?(ATTACH POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF POLICY)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-193",
+                                "text": "Does your energy efficiency policy or\nguideline also include measures regarding\nthe dissemination and utilization of\nrenewable energies?(ATTACH POLICY OR ALTERNATIVE DOCUMENT THAT\nSERVES THE FUNCTION OF POLICY)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-194",
+                                "text": "Does your company measure and monitor\nits own energy consumption?(INCLUDE IN THE ATTACHMENT OR DESCRIPTION FIELD\nTHE TOOLS AND METHODOLOGIES EMPLOYED)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-195",
+                                "text": "Provide the values in Megawatt-hours\n(MWh) for:\nTotal energy consumption from fossil sources\nTotal energy consumption from nuclear\nsources\nTotal energy consumption from renewable\nsources (e.g., solar, wind, hydroelectric, etc.)\nProduction of energy from renewable sources\nProduction of energy from fossil sources. ATTACHMENT AND/OR PROVIDE EVIDENCE IN THE\nDESCRIPTION FIELD, INDICATING WHERE POSSIBLE THE\nDISAGGREGATED ENERGY CONSUMPTION BY ENERGY\nSOURCES)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-196",
+                                "text": "Indicate the reduction in energy\nconsumption, in MWh, achieved as a direct\nresult of your company's energy efficiency\nand conservation initiatives. (ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-204",
+                                "text": "Does your company have a policy or\nguidelines for the management of water\nand/or marine resources?ATTACH POLICY OR ALTERNATIVE DOCUMENT SERVING\nAS POLICY",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-205",
+                                "text": "Does your company measure and monitor\nthe use of water resources (e.g.,\nwithdrawals, consumption)?(ATTACH DOCUMENTATION OR DESCRIBE IN THE\nDESCRIPTION FIELD THE TOOLS AND METHODOLOGIES\nUSED)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-206",
+                                "text": "Has your company defined clear\nobjectives related to the management of\nwater and/or marine resources?\n(ATTACH DOCUMENTATION OR PROVIDE EVIDENCE IN\nTHE DESCRIPTION FIELD, INDICATING WHICH\nECOLOGICAL THRESHOLDS HAVE BEEN UTILIZED)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-207",
+                                "text": "Has your company set objectives and\nimplemented monitoring processes on\nwater resource consumption within its\nvalue chain?(PLEASE ATTACH OR PROVIDE IN THE DESCRIPTION\nFIELD THE OBJECTIVES AND MONITORING PROCESSES\nREGARDING WATER RESOURCES IN OUR VALUE CHAIN)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-208",
+                                "text": "Indicate the value in m3 of water\nwithdrawn, recovered, stored, and\nconsumed in business activities\n(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-209",
+                                "text": "Specify the consumption of water\nwithdrawn and consumed in geographic\nareas classified as high or extremely high\nin water stress [to identify geographic\nareas classified as high or extremely high\nin water stress, refer to the WRI Aqueduct\nWater Risk Atlas Tool] in m3\n(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-210",
+                                "text": "Provide the estimated value of water\nwithdrawn and consumed for the entire\nvalue chain in m3\n(ATTACH DOCUMENTATION AND/OR PROVIDE\nEVIDENCE IN THE DESCRIPTION FIELD)",
+                                "pillar": "Environment"
+                            },
+                            {
+                                "id": "Q-211",
+                                "text": "Has your company adopted a policy or\nguidelines for waste management and the\ncircular economy?\n(ATTACH POLICY OR ALTERNATIVE DOCUMENT\nSERVING THE FUNCTION OF A POLICY)",
+                                "pillar": "Environment"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Master",
+        "pillars": []
+    }
+];
