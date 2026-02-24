@@ -6,9 +6,10 @@ import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSam
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 
-interface CalendarEvent {
+export interface CalendarEvent {
     id: string
     title: string
     date: Date

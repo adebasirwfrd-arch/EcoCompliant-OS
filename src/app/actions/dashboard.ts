@@ -190,7 +190,9 @@ export async function getDashboardStats() {
     }
 }
 
-export async function getCalendarEvents() {
+import { CalendarEvent } from "@/components/shared/dashboard-calendar"
+
+export async function getCalendarEvents(): Promise<CalendarEvent[]> {
     try {
         const now = new Date();
         const startOfYear = new Date(now.getFullYear(), 0, 1);
@@ -202,7 +204,7 @@ export async function getCalendarEvents() {
         const amdalNext = await db.query.amdalRequirements.findMany();
         const caps = await db.query.isoCAPA.findMany();
 
-        const events = [
+        const rawEvents = [
             ...legalReviews.map(l => ({
                 id: `legal-${l.id}`,
                 title: l.title || "Legal Review",
@@ -217,7 +219,7 @@ export async function getCalendarEvents() {
                 date: r.dueDate,
                 type: "Report",
                 link: "/dashboard/compliance",
-                status: r.status
+                status: r.status || "Pending"
             })),
             ...amdalNext.map(a => ({
                 id: `amdal-${a.id}`,
@@ -233,9 +235,12 @@ export async function getCalendarEvents() {
                 date: c.dueDate,
                 type: "CAPA",
                 link: "/dashboard/iso14001",
-                status: c.status
+                status: c.status || "Open"
             }))
-        ].filter(e => e.date !== null);
+        ]
+
+        // Fix type mismatch by using a user-defined type guard
+        const events = rawEvents.filter((e): e is CalendarEvent & { date: Date } => e.date !== null && e.date !== undefined);
 
         return events;
     } catch (error) {
