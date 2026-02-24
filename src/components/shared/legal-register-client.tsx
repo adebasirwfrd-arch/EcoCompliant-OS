@@ -48,7 +48,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { toast } from "sonner"
 import { updateLegalRegister, deleteLegalRegister, createLegalRegister } from "@/app/actions/legal"
 import { format } from "date-fns"
@@ -243,114 +243,117 @@ export function LegalRegisterClient({ initialData }: LegalRegisterClientProps) {
 
             {/* Main Table Container */}
             <Card className="rounded-2xl border-slate-200 shadow-xl overflow-hidden bg-white/50 backdrop-blur-xl">
-                <ScrollArea className="h-[calc(100vh-400px)]">
-                    <Table>
-                        <TableHeader className="bg-slate-50/50 sticky top-0 z-20">
-                            <TableRow className="hover:bg-transparent border-slate-100">
-                                <TableHead className="w-[60px] font-black text-slate-900 uppercase tracking-tighter text-xs text-center">No</TableHead>
-                                <TableHead className="w-[120px] font-bold text-slate-800">Regulator</TableHead>
-                                <TableHead className="w-[150px] font-bold text-slate-800">Subject</TableHead>
-                                <TableHead className="font-bold text-slate-800">Title & Clause</TableHead>
-                                <TableHead className="w-[250px] font-bold text-slate-800">Compliance Summary</TableHead>
-                                <TableHead className="w-[120px] font-bold text-slate-800 text-center">Status</TableHead>
-                                <TableHead className="w-[100px] font-bold text-slate-800 text-center">%</TableHead>
-                                <TableHead className="w-[120px] font-bold text-slate-800">Next Review</TableHead>
-                                <TableHead className="w-[80px] text-right"></TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {filteredData.length > 0 ? (
-                                filteredData.map((item) => (
-                                    <TableRow key={item.id} className="group hover:bg-slate-50/80 transition-colors border-slate-100">
-                                        <TableCell className="text-center font-bold text-slate-400">{item.no}</TableCell>
-                                        <TableCell>
-                                            <Badge variant="outline" className="rounded-md font-bold uppercase tracking-tight text-[10px] py-0 border-slate-200 bg-white">
-                                                {item.regulator}
-                                            </Badge>
-                                        </TableCell>
-                                        <TableCell>
-                                            <span className="text-xs font-bold text-slate-600 truncate block max-w-[140px]">
-                                                {item.subjectMatter}
-                                            </span>
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="flex flex-col gap-0.5">
-                                                <div className="font-black text-slate-900 leading-tight">{item.title}</div>
-                                                <div className="text-xs font-medium text-slate-500 line-clamp-1 italic">{item.clause}</div>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>
-                                            <div className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
-                                                {item.descriptionOfCompliance}
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="text-center">
-                                            {item.comply === 'Obligation' ? (
-                                                <Badge className="bg-blue-50 text-blue-700 border-blue-100 hover:bg-blue-100 font-bold px-2 py-0.5">
-                                                    Obligation
+                <ScrollArea className="h-[calc(100vh-400px)] w-full">
+                    <div className="min-w-[1200px]">
+                        <Table>
+                            <TableHeader className="bg-slate-50/50 sticky top-0 z-20">
+                                <TableRow className="hover:bg-transparent border-slate-100">
+                                    <TableHead className="w-[60px] font-black text-slate-900 uppercase tracking-tighter text-xs text-center">No</TableHead>
+                                    <TableHead className="w-[120px] font-bold text-slate-800">Regulator</TableHead>
+                                    <TableHead className="w-[150px] font-bold text-slate-800">Subject</TableHead>
+                                    <TableHead className="font-bold text-slate-800">Title & Clause</TableHead>
+                                    <TableHead className="w-[250px] font-bold text-slate-800">Compliance Summary</TableHead>
+                                    <TableHead className="w-[120px] font-bold text-slate-800 text-center">Status</TableHead>
+                                    <TableHead className="w-[100px] font-bold text-slate-800 text-center">%</TableHead>
+                                    <TableHead className="w-[120px] font-bold text-slate-800">Next Review</TableHead>
+                                    <TableHead className="w-[80px] text-right"></TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {filteredData.length > 0 ? (
+                                    filteredData.map((item) => (
+                                        <TableRow key={item.id} className="group hover:bg-slate-50/80 transition-colors border-slate-100">
+                                            <TableCell className="text-center font-bold text-slate-400">{item.no}</TableCell>
+                                            <TableCell>
+                                                <Badge variant="outline" className="rounded-md font-bold uppercase tracking-tight text-[10px] py-0 border-slate-200 bg-white">
+                                                    {item.regulator}
                                                 </Badge>
-                                            ) : item.comply === 'Y' ? (
-                                                <div className="flex items-center justify-center text-emerald-600">
-                                                    <CheckCircle className="h-5 w-5" />
+                                            </TableCell>
+                                            <TableCell>
+                                                <span className="text-xs font-bold text-slate-600 truncate block max-w-[140px]">
+                                                    {item.subjectMatter}
+                                                </span>
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="flex flex-col gap-0.5">
+                                                    <div className="font-black text-slate-900 leading-tight">{item.title}</div>
+                                                    <div className="text-xs font-medium text-slate-500 line-clamp-1 italic">{item.clause}</div>
                                                 </div>
-                                            ) : (
-                                                <div className="flex items-center justify-center text-amber-500">
-                                                    <AlertTriangle className="h-5 w-5" />
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                                                    {item.descriptionOfCompliance}
                                                 </div>
-                                            )}
-                                        </TableCell>
-                                        <TableCell className="text-center">
-                                            <div className="font-black text-slate-900">{item.percentage === 'TBD' ? '-' : item.percentage}</div>
-                                        </TableCell>
-                                        <TableCell>
-                                            {item.nextReviewDate ? (
-                                                <div className="flex items-center gap-1.5 text-slate-600">
-                                                    <Calendar className="h-3 w-3" />
-                                                    <span className="text-xs font-bold">
-                                                        {format(new Date(item.nextReviewDate), 'MMM d, yyyy')}
-                                                    </span>
-                                                </div>
-                                            ) : (
-                                                <span className="text-xs text-slate-400 font-medium italic">Not set</span>
-                                            )}
-                                        </TableCell>
-                                        <TableCell className="text-right">
-                                            <DropdownMenu>
-                                                <DropdownMenuTrigger asChild>
-                                                    <Button variant="ghost" className="h-8 w-8 p-0 hover:bg-slate-200">
-                                                        <MoreHorizontal className="h-4 w-4" />
-                                                    </Button>
-                                                </DropdownMenuTrigger>
-                                                <DropdownMenuContent align="end" className="rounded-xl">
-                                                    <DropdownMenuItem
-                                                        className="font-bold cursor-pointer"
-                                                        onClick={() => {
-                                                            setEditingItem(item)
-                                                            setIsEditDialogOpen(true)
-                                                        }}
-                                                    >
-                                                        <Edit2 className="mr-2 h-4 w-4" /> Edit
-                                                    </DropdownMenuItem>
-                                                    <DropdownMenuItem
-                                                        className="font-bold text-red-600 focus:text-red-600 cursor-pointer"
-                                                        onClick={() => handleDelete(item.id)}
-                                                    >
-                                                        <Trash2 className="mr-2 h-4 w-4" /> Delete
-                                                    </DropdownMenuItem>
-                                                </DropdownMenuContent>
-                                            </DropdownMenu>
+                                            </TableCell>
+                                            <TableCell className="text-center">
+                                                {item.comply === 'Obligation' ? (
+                                                    <Badge className="bg-blue-50 text-blue-700 border-blue-100 hover:bg-blue-100 font-bold px-2 py-0.5">
+                                                        Obligation
+                                                    </Badge>
+                                                ) : item.comply === 'Y' ? (
+                                                    <div className="flex items-center justify-center text-emerald-600">
+                                                        <CheckCircle className="h-5 w-5" />
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex items-center justify-center text-amber-500">
+                                                        <AlertTriangle className="h-5 w-5" />
+                                                    </div>
+                                                )}
+                                            </TableCell>
+                                            <TableCell className="text-center">
+                                                <div className="font-black text-slate-900">{item.percentage === 'TBD' ? '-' : item.percentage}</div>
+                                            </TableCell>
+                                            <TableCell>
+                                                {item.nextReviewDate ? (
+                                                    <div className="flex items-center gap-1.5 text-slate-600">
+                                                        <Calendar className="h-3 w-3" />
+                                                        <span className="text-xs font-bold">
+                                                            {format(new Date(item.nextReviewDate), 'MMM d, yyyy')}
+                                                        </span>
+                                                    </div>
+                                                ) : (
+                                                    <span className="text-xs text-slate-400 font-medium italic">Not set</span>
+                                                )}
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" className="h-8 w-8 p-0 hover:bg-slate-200">
+                                                            <MoreHorizontal className="h-4 w-4" />
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align="end" className="rounded-xl">
+                                                        <DropdownMenuItem
+                                                            className="font-bold cursor-pointer"
+                                                            onClick={() => {
+                                                                setEditingItem(item)
+                                                                setIsEditDialogOpen(true)
+                                                            }}
+                                                        >
+                                                            <Edit2 className="mr-2 h-4 w-4" /> Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem
+                                                            className="font-bold text-red-600 focus:text-red-600 cursor-pointer"
+                                                            onClick={() => handleDelete(item.id)}
+                                                        >
+                                                            <Trash2 className="mr-2 h-4 w-4" /> Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={9} className="h-24 text-center text-slate-500 font-medium">
+                                            No regulations found matching your filters.
                                         </TableCell>
                                     </TableRow>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell colSpan={9} className="h-24 text-center text-slate-500 font-medium">
-                                        No regulations found matching your filters.
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
+                    <ScrollBar orientation="horizontal" />
                 </ScrollArea>
             </Card>
 

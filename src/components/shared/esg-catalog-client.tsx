@@ -643,7 +643,7 @@ export function EsgCatalogClient({
                 </div>
 
                 <div className="flex-1 min-h-0 min-w-0 bg-white border border-slate-200 rounded-b-xl overflow-hidden flex flex-col">
-                    <div className="grid grid-cols-12 bg-[#F8FAFC] border-b border-slate-200 p-4 text-[10px] font-black uppercase text-slate-500 tracking-wider">
+                    <div className="grid grid-cols-12 bg-[#F8FAFC] border-b border-slate-200 p-4 text-[10px] font-black uppercase text-slate-500 tracking-wider sticky top-0 z-20 min-w-[900px]">
                         <div className="col-span-1">ID</div>
                         <div className="col-span-1">Scoring</div>
                         <div className="col-span-6">Questions</div>
@@ -651,8 +651,8 @@ export function EsgCatalogClient({
                         <div className="col-span-1">Action</div>
                         <div className="col-span-1 text-center">Performance Saved</div>
                     </div>
-                    <ScrollArea className="flex-1 min-h-0">
-                        <div className="divide-y divide-slate-100 pb-20">
+                    <ScrollArea className="flex-1 min-h-0 w-full">
+                        <div className="divide-y divide-slate-100 pb-20 min-w-[900px]">
                             {(selectedTopicId
                                 ? (selectedPillar?.topics || []).filter(t => t.id === selectedTopicId)
                                 : (selectedPillar?.topics || [])
@@ -702,12 +702,13 @@ export function EsgCatalogClient({
                                 )
                             })}
                         </div>
+                        <ScrollBar orientation="horizontal" />
                     </ScrollArea>
                 </div>
             </main>
 
             <Dialog open={isAssessmentModalOpen} onOpenChange={setIsAssessmentModalOpen}>
-                <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle className="text-[#005A8C] flex items-center gap-2">
                             Question {selectedQuestion?.id}
