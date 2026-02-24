@@ -380,7 +380,7 @@ export function DashboardClient({ stats }: DashboardClientProps) {
                         {stats.upcomingEvents.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-slate-400 space-y-2">
                                 <Calendar className="h-12 w-12 opacity-20" />
-                                <span className="font-bold">No upcoming events this month</span>
+                                <span className="font-bold text-slate-400">No upcoming events in the next 90 days</span>
                             </div>
                         )}
                         <div className="pt-4 border-t border-slate-100">

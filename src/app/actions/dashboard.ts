@@ -14,15 +14,19 @@ import {
     legalRegisters,
     amdalRequirements,
     isoObjectives,
-    isoCAPA
+    isoCAPA,
+    isoAudits,
+    isoEmergencyPrep,
+    isoInternalAudits,
+    isoManagementReviews,
+    popalProfiles
 } from "@/db/schema"
 import { desc, eq, asc, gte, lte, and, lt } from "drizzle-orm"
 
 export async function getDashboardStats() {
     try {
         const now = new Date();
-        const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        const ninetyDaysFromNow = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
 
         // 1. ESG Stats
         const latestEsg = await db.query.esgAssessments.findFirst({
@@ -78,14 +82,26 @@ export async function getDashboardStats() {
         });
 
         // --- AGGREGATE UPCOMING EVENTS ---
+        const horizon = ninetyDaysFromNow;
+
         const legalReviews = await db.query.legalRegisters.findMany({
-            where: and(gte(legalRegisters.nextReviewDate, now), lte(legalRegisters.nextReviewDate, endOfMonth))
+            where: and(gte(legalRegisters.nextReviewDate, now), lte(legalRegisters.nextReviewDate, horizon))
         });
 
-        const reportDeadlines = reports.filter(r => r.dueDate >= now && r.dueDate <= endOfMonth);
+        const reportDeadlines = await db.query.complianceReports.findMany({
+            where: and(gte(complianceReports.dueDate, now), lte(complianceReports.dueDate, horizon))
+        });
 
         const amdalNext = await db.query.amdalRequirements.findMany({
-            where: and(gte(amdalRequirements.nextDueDate, now), lte(amdalRequirements.nextDueDate, endOfMonth))
+            where: and(gte(amdalRequirements.nextDueDate, now), lte(amdalRequirements.nextDueDate, horizon))
+        });
+
+        const objectiveDeadlines = await db.query.isoObjectives.findMany({
+            where: and(gte(isoObjectives.deadline, now), lte(isoObjectives.deadline, horizon))
+        });
+
+        const auditDates = await db.query.isoAudits.findMany({
+            where: and(gte(isoAudits.auditDate, now), lte(isoAudits.auditDate, horizon))
         });
 
         const upcomingEvents = [
@@ -109,8 +125,42 @@ export async function getDashboardStats() {
                 type: "AMDAL",
                 id: a.id,
                 link: "/dashboard/amdal"
+            })),
+            ...objectiveDeadlines.map(o => ({
+                title: o.objective,
+                date: o.deadline,
+                type: "Objective",
+                id: o.id,
+                link: "/dashboard/iso14001"
+            })),
+            ...auditDates.map(aud => ({
+                title: aud.auditType,
+                date: aud.auditDate,
+                type: "Audit",
+                id: aud.id,
+                link: "/dashboard/audit"
             }))
-        ].sort((a, b) => (a.date?.getTime() || 0) - (b.date?.getTime() || 0));
+        ]
+
+        // Add waste storage deadlines to upcoming
+        const storedWaste = await db.query.wasteManifests.findMany({
+            where: eq(wasteManifests.status, "stored")
+        });
+
+        storedWaste.forEach(w => {
+            const deadline = new Date(w.generatorDate.getTime() + w.maxStorageDays * 24 * 60 * 60 * 1000);
+            if (deadline >= now && deadline <= horizon) {
+                upcomingEvents.push({
+                    title: `Waste Storage Limit: ${w.wasteType}`,
+                    date: deadline,
+                    type: "Waste",
+                    id: w.id,
+                    link: "/dashboard/waste"
+                });
+            }
+        });
+
+        upcomingEvents.sort((a, b) => (a.date?.getTime() || 0) - (b.date?.getTime() || 0));
 
         // --- AGGREGATE ACTION REQUIRED ---
         const overdueReports = reports.filter(r => r.status === "Pending" && (r.dueDate?.getTime() || 0) < now.getTime());
@@ -203,6 +253,11 @@ export async function getCalendarEvents(): Promise<CalendarEvent[]> {
         const reports = await db.query.complianceReports.findMany();
         const amdalNext = await db.query.amdalRequirements.findMany();
         const caps = await db.query.isoCAPA.findMany();
+        const objectives = await db.query.isoObjectives.findMany();
+        const audits = await db.query.isoAudits.findMany();
+        const drills = await db.query.isoEmergencyPrep.findMany();
+        const internalAudits = await db.query.isoInternalAudits.findMany();
+        const mgmtReviews = await db.query.isoManagementReviews.findMany();
 
         const rawEvents = [
             ...legalReviews.map(l => ({
@@ -236,8 +291,75 @@ export async function getCalendarEvents(): Promise<CalendarEvent[]> {
                 type: "CAPA",
                 link: "/dashboard/iso14001",
                 status: c.status || "Open"
+            })),
+            ...objectives.map(o => ({
+                id: `obj-${o.id}`,
+                title: o.objective,
+                date: o.deadline,
+                type: "Objective",
+                link: "/dashboard/iso14001",
+                status: o.status || "Active"
+            })),
+            ...audits.map(aud => ({
+                id: `aud-${aud.id}`,
+                title: `Audit: ${aud.auditType}`,
+                date: aud.auditDate,
+                type: "Audit",
+                link: "/dashboard/audit",
+                status: aud.status || "Scheduled"
+            })),
+            ...drills.map(d => ({
+                id: `drill-${d.id}`,
+                title: `Drill: ${d.scenario}`,
+                date: d.nextDrillDate,
+                type: "Emergency",
+                link: "/dashboard/iso14001",
+                status: d.status || "Ready"
+            })),
+            ...internalAudits.map(ia => ({
+                id: `iaud-${ia.id}`,
+                title: ia.auditTitle,
+                date: ia.auditDate,
+                type: "Audit",
+                link: "/dashboard/audit",
+                status: ia.status || "Planned"
+            })),
+            ...mgmtReviews.map(mr => ({
+                id: `mr-${mr.id}`,
+                title: "Management Review",
+                date: mr.meetingDate,
+                type: "Review",
+                link: "/dashboard/iso14001",
+                status: mr.status || "Planned"
             }))
         ]
+
+        // Add waste storage deadlines
+        const storedWasteAll = await db.query.wasteManifests.findMany();
+        storedWasteAll.forEach(w => {
+            const deadline = new Date(w.generatorDate.getTime() + (w.maxStorageDays || 90) * 24 * 60 * 60 * 1000);
+            rawEvents.push({
+                id: `waste-${w.id}`,
+                title: `Waste Storage Limit: ${w.wasteType}`,
+                date: deadline,
+                type: "Waste",
+                link: "/dashboard/waste",
+                status: w.status === "stored" ? "Critical" : "Closed"
+            });
+        });
+
+        // Add POPAL expiry
+        const popal = await db.query.popalProfiles.findMany();
+        popal.forEach(p => {
+            rawEvents.push({
+                id: `popal-${p.id}`,
+                title: `POPAL Cert Expiry: ${p.name}`,
+                date: p.validityEnd,
+                type: "Certification",
+                link: "/dashboard/wastewater",
+                status: p.status || "Active"
+            });
+        });
 
         // Fix type mismatch by using a user-defined type guard
         const events = rawEvents.filter((e): e is CalendarEvent & { date: Date } => e.date !== null && e.date !== undefined);

@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { CalendarIcon, ChevronLeft, ChevronRight, Activity, TrendingDown, ClipboardCheck, Scale, FileText, AlertCircle } from "lucide-react"
+import { CalendarIcon, ChevronLeft, ChevronRight, Activity, TrendingDown, ClipboardCheck, Scale, FileText, AlertCircle, Target, ShieldCheck, Flame, Users } from "lucide-react"
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, isToday, addMonths, subMonths } from "date-fns"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -34,6 +34,10 @@ export function DashboardCalendar({ events }: { events: CalendarEvent[] }) {
             case 'Legal': return <Scale className="h-3 w-3 shrink-0" />
             case 'Report': return <FileText className="h-3 w-3 shrink-0" />
             case 'CAPA': return <AlertCircle className="h-3 w-3 shrink-0" />
+            case 'Audit': return <ShieldCheck className="h-3 w-3 shrink-0" />
+            case 'Objective': return <Target className="h-3 w-3 shrink-0" />
+            case 'Emergency': return <Flame className="h-3 w-3 shrink-0" />
+            case 'Review': return <Users className="h-3 w-3 shrink-0" />
             default: return <ClipboardCheck className="h-3 w-3 shrink-0" />
         }
     }
@@ -44,6 +48,10 @@ export function DashboardCalendar({ events }: { events: CalendarEvent[] }) {
             case 'Legal': return "border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100"
             case 'Report': return "border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100"
             case 'CAPA': return "border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100"
+            case 'Audit': return "border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+            case 'Objective': return "border-cyan-200 bg-cyan-50 text-cyan-700 hover:bg-cyan-100"
+            case 'Emergency': return "border-orange-200 bg-orange-50 text-orange-700 hover:bg-orange-100"
+            case 'Review': return "border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100"
             default: return "border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
         }
     }
