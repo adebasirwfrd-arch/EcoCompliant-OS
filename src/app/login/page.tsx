@@ -33,10 +33,16 @@ export default function LoginPage() {
                         <Input id="password" type="password" />
                     </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex flex-col gap-4">
                     <Button className="w-full bg-emerald-600 hover:bg-emerald-700" asChild>
                         <Link href="/dashboard">Sign In</Link>
                     </Button>
+                    <div className="text-center text-sm text-slate-500">
+                        Don't have an account?{" "}
+                        <Link href="/register" className="text-emerald-600 font-bold hover:underline">
+                            Create Account
+                        </Link>
+                    </div>
                 </CardFooter>
             </Card>
         </div>
