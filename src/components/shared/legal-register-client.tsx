@@ -262,7 +262,14 @@ export function LegalRegisterClient({ initialData }: LegalRegisterClientProps) {
                             <TableBody>
                                 {filteredData.length > 0 ? (
                                     filteredData.map((item) => (
-                                        <TableRow key={item.id} className="group hover:bg-slate-50/80 transition-colors border-slate-100">
+                                        <TableRow
+                                            key={item.id}
+                                            className="group hover:bg-slate-50/80 transition-colors border-slate-100 cursor-pointer"
+                                            onClick={() => {
+                                                setEditingItem(item)
+                                                setIsEditDialogOpen(true)
+                                            }}
+                                        >
                                             <TableCell className="text-center font-bold text-slate-400">{item.no}</TableCell>
                                             <TableCell>
                                                 <Badge variant="outline" className="rounded-md font-bold uppercase tracking-tight text-[10px] py-0 border-slate-200 bg-white">
@@ -317,12 +324,12 @@ export function LegalRegisterClient({ initialData }: LegalRegisterClientProps) {
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <DropdownMenu>
-                                                    <DropdownMenuTrigger asChild>
+                                                    <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
                                                         <Button variant="ghost" className="h-8 w-8 p-0 hover:bg-slate-200">
                                                             <MoreHorizontal className="h-4 w-4" />
                                                         </Button>
                                                     </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end" className="rounded-xl">
+                                                    <DropdownMenuContent align="end" className="rounded-xl" onClick={(e) => e.stopPropagation()}>
                                                         <DropdownMenuItem
                                                             className="font-bold cursor-pointer"
                                                             onClick={() => {
@@ -454,18 +461,37 @@ export function LegalRegisterClient({ initialData }: LegalRegisterClientProps) {
                         </form>
                     </ScrollArea>
 
-                    <DialogFooter className="p-6 bg-slate-50/50">
-                        <Button variant="outline" className="rounded-xl border-slate-200" onClick={() => {
-                            setIsAddDialogOpen(false)
-                            setIsEditDialogOpen(false)
-                        }}>Cancel</Button>
-                        <Button
-                            type="submit"
-                            form="reg-form"
-                            className="rounded-xl bg-slate-900 px-8 text-white font-bold"
-                        >
-                            {isAddDialogOpen ? "Save Regulation" : "Update Changes"}
-                        </Button>
+                    <DialogFooter className="p-6 bg-slate-50/50 flex items-center justify-between sm:justify-between">
+                        <div className="flex gap-2">
+                            {isEditDialogOpen && (
+                                <Button
+                                    variant="destructive"
+                                    className="rounded-xl font-bold px-4"
+                                    onClick={() => {
+                                        if (editingItem && confirm("Are you sure you want to delete this regulation?")) {
+                                            handleDelete(editingItem.id)
+                                            setIsEditDialogOpen(false)
+                                        }
+                                    }}
+                                >
+                                    <Trash2 className="mr-2 h-4 w-4" />
+                                    Delete
+                                </Button>
+                            )}
+                        </div>
+                        <div className="flex gap-2">
+                            <Button variant="outline" className="rounded-xl border-slate-200" onClick={() => {
+                                setIsAddDialogOpen(false)
+                                setIsEditDialogOpen(false)
+                            }}>Cancel</Button>
+                            <Button
+                                type="submit"
+                                form="reg-form"
+                                className="rounded-xl bg-slate-900 px-8 text-white font-bold"
+                            >
+                                {isAddDialogOpen ? "Save Regulation" : "Update Changes"}
+                            </Button>
+                        </div>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
