@@ -33,9 +33,20 @@ export function EsgAssessmentStepper({ datasetSlug, onComplete }: EsgAssessmentS
         )
     }
 
-    const sections = standard.sections
+    const sections = standard?.sections || []
     const currentSection = sections[currentStep]
     const totalSteps = sections.length
+
+    if (sections.length === 0 || !currentSection) {
+        return (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+                <AlertCircle className="h-12 w-12 text-slate-700" />
+                <h3 className="text-xl font-black text-white">Assessment Sections Not Available</h3>
+                <p className="text-slate-500 font-medium">No assessment content found for this module.</p>
+                <Button onClick={() => router.back()} variant="outline" className="rounded-xl border-slate-800 text-slate-400">Go Back</Button>
+            </div>
+        )
+    }
 
     // Calculate Score
     const currentScore = useMemo(() => {
