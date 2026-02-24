@@ -16,7 +16,8 @@ import {
     AlertTriangle,
     CheckCircle,
     MoreHorizontal,
-    ArrowUpDown
+    ArrowUpDown,
+    ShieldCheck
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -49,6 +50,13 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { toast } from "sonner"
 import { updateLegalRegister, deleteLegalRegister, createLegalRegister } from "@/app/actions/legal"
 import { format } from "date-fns"
@@ -151,99 +159,111 @@ export function LegalRegisterClient({ initialData }: LegalRegisterClientProps) {
     }
 
     return (
-        <div className="space-y-6 pb-20">
-            {/* God-Tier Dashboard Header */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card className="bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-emerald-200">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-bold text-slate-500 uppercase tracking-wider">Total Legal Registers</CardTitle>
-                        <Scale className="h-4 w-4 text-emerald-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-slate-900">{totalRegs}</div>
-                        <p className="text-xs text-slate-500 font-medium mt-1">Foundational standards</p>
-                    </CardContent>
-                </Card>
-                <Card className="bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-blue-200">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-bold text-slate-500 uppercase tracking-wider">Implementation Avg</CardTitle>
-                        <CheckCircle2 className="h-4 w-4 text-blue-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-slate-900">{complianceRate}%</div>
-                        <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
-                            <div
-                                className="bg-blue-600 h-full rounded-full transition-all duration-1000"
-                                style={{ width: `${complianceRate}%` }}
-                            />
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-amber-200">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-bold text-slate-500 uppercase tracking-wider">Upcoming Reviews</CardTitle>
-                        <Clock className="h-4 w-4 text-amber-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-slate-900">{nextReviews}</div>
-                        <p className="text-xs text-slate-500 font-medium mt-1">Due within 30 days</p>
-                    </CardContent>
-                </Card>
-                <Card className="bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm transition-all hover:shadow-md hover:border-purple-200">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-bold text-slate-500 uppercase tracking-wider">Acts (UU)</CardTitle>
-                        <FileText className="h-4 w-4 text-purple-600" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-slate-900">{actRegs}</div>
-                        <p className="text-xs text-slate-500 font-medium mt-1">Supreme regulations</p>
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Actions Bar */}
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-slate-200 shadow-sm sticky top-0 z-10">
-                <div className="flex items-center w-full md:w-auto gap-3">
-                    <div className="relative w-full md:w-80">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+        <div className="space-y-6 pb-20 min-w-[1200px]">
+            {/* Action Bar & Stats Section */}
+            <div className="space-y-6">
+                <div className="flex items-center justify-between gap-4">
+                    <div className="relative flex-1 max-w-md group">
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-emerald-500 transition-colors" />
                         <Input
                             placeholder="Search by title, clause, or subject..."
-                            className="pl-9 rounded-xl border-slate-200 bg-slate-50/50"
+                            className="bg-white/70 backdrop-blur-md border-slate-200 pl-10 h-12 rounded-2xl focus-visible:ring-emerald-500/20 focus-visible:border-emerald-500/50 shadow-sm transition-all text-sm font-medium"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="outline" className="rounded-xl border-slate-200">
-                                <Filter className="mr-2 h-4 w-4" />
-                                {filterRegulator}
-                                <ChevronDown className="ml-2 h-4 w-4" />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start" className="w-48 rounded-xl">
-                            <DropdownMenuLabel>Filter by Regulator</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            {regulators.map(reg => (
-                                <DropdownMenuItem key={reg || "unknown"} onClick={() => setFilterRegulator(reg || "All")}>
-                                    {reg}
-                                </DropdownMenuItem>
-                            ))}
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <div className="flex items-center gap-3">
+                        <Select value={filterRegulator} onValueChange={setFilterRegulator}>
+                            <SelectTrigger className="w-[180px] h-12 rounded-2xl bg-white/70 backdrop-blur-md border-slate-200 focus:ring-emerald-500/20 shadow-sm font-bold text-slate-700">
+                                <div className="flex items-center gap-2">
+                                    <Filter className="h-4 w-4 text-slate-400" />
+                                    <SelectValue placeholder="All Regulators" />
+                                </div>
+                            </SelectTrigger>
+                            <SelectContent className="rounded-2xl border-slate-200 shadow-2xl">
+                                {regulators.map(reg => (
+                                    <SelectItem key={reg || "unknown"} value={reg || "All"} className="font-bold">
+                                        {reg}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
+                        <Button
+                            className="h-12 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black shadow-lg shadow-emerald-200/50 flex items-center gap-2 transition-all active:scale-95"
+                            onClick={() => setIsAddDialogOpen(true)}
+                        >
+                            <Plus className="h-5 w-5" />
+                            Add Regulation
+                        </Button>
+                    </div>
                 </div>
-                <Button
-                    className="w-full md:w-auto rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 shadow-lg shadow-slate-200"
-                    onClick={() => setIsAddDialogOpen(true)}
-                >
-                    <Plus className="mr-2 h-5 w-5" />
-                    Add Regulation
-                </Button>
+
+                {/* Dashboard Stats Cards */}
+                <div className="grid grid-cols-4 gap-4">
+                    <Card className="p-6 rounded-3xl border-slate-100 shadow-xl bg-gradient-to-br from-white to-slate-50 relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-emerald-500">
+                        <div className="flex flex-col gap-1 relative z-10">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Total Legal Registers</span>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-slate-900 tracking-tighter">{totalRegs}</span>
+                                <Scale className="h-4 w-4 text-emerald-500 opacity-50" />
+                            </div>
+                            <span className="text-xs text-slate-500 font-bold">Foundational standards</span>
+                        </div>
+                        <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform">
+                            <Scale className="h-24 w-24" />
+                        </div>
+                    </Card>
+
+                    <Card className="p-6 rounded-3xl border-slate-100 shadow-xl bg-gradient-to-br from-white to-slate-50 relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-blue-500">
+                        <div className="flex flex-col gap-1 relative z-10">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Implementation Avg</span>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-slate-900 tracking-tighter">{complianceRate}%</span>
+                                <CheckCircle2 className="h-4 w-4 text-blue-500 opacity-50" />
+                            </div>
+                            <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div className="bg-blue-500 h-full rounded-full transition-all" style={{ width: `${complianceRate}%` }} />
+                            </div>
+                        </div>
+                        <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform">
+                            <CheckCircle2 className="h-24 w-24" />
+                        </div>
+                    </Card>
+
+                    <Card className="p-6 rounded-3xl border-slate-100 shadow-xl bg-gradient-to-br from-white to-slate-50 relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-amber-500">
+                        <div className="flex flex-col gap-1 relative z-10">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Upcoming Reviews</span>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-slate-900 tracking-tighter">{nextReviews}</span>
+                                <Clock className="h-4 w-4 text-amber-500 opacity-50" />
+                            </div>
+                            <span className="text-xs text-slate-500 font-bold">Due within 30 days</span>
+                        </div>
+                        <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform">
+                            <Clock className="h-24 w-12" />
+                        </div>
+                    </Card>
+
+                    <Card className="p-6 rounded-3xl border-slate-100 shadow-xl bg-gradient-to-br from-white to-slate-50 relative overflow-hidden group hover:shadow-2xl transition-all border-b-4 border-b-indigo-500">
+                        <div className="flex flex-col gap-1 relative z-10">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Acts (UU)</span>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-black text-slate-900 tracking-tighter">{actRegs}</span>
+                                <ShieldCheck className="h-4 w-4 text-indigo-500 opacity-50" />
+                            </div>
+                            <span className="text-xs text-slate-500 font-bold">Supreme regulations</span>
+                        </div>
+                        <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform">
+                            <ShieldCheck className="h-24 w-24" />
+                        </div>
+                    </Card>
+                </div>
             </div>
 
             {/* Main Table Container */}
             <Card className="rounded-2xl border-slate-200 shadow-xl overflow-hidden bg-white/50 backdrop-blur-xl">
-                <ScrollArea className="h-[calc(100vh-400px)] w-full">
+                <ScrollArea className="h-[calc(100vh-450px)] w-full">
                     <div className="min-w-[1200px]">
                         <Table>
                             <TableHeader className="bg-slate-50/50 sticky top-0 z-20">
