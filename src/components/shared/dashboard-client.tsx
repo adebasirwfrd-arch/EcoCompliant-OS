@@ -24,7 +24,11 @@ import {
     Users,
     ShieldCheck,
     ChevronRight,
-    Search
+    Search,
+    Calendar,
+    AlertTriangle,
+    Clock,
+    Plus
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -284,6 +288,115 @@ export function DashboardClient({ stats }: DashboardClientProps) {
                         </CardContent>
                     </Card>
                 </Link>
+            </div>
+
+            {/* High-Fidelity Action Hub */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Action Required Widget */}
+                <Card className="rounded-[2.5rem] border-none bg-slate-50 shadow-2xl overflow-hidden">
+                    <CardHeader className="p-8 pb-4">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-3 bg-rose-100 rounded-2xl">
+                                    <AlertTriangle className="h-6 w-6 text-rose-600" />
+                                </div>
+                                <CardTitle className="text-2xl font-black text-slate-800">Action Required</CardTitle>
+                            </div>
+                            <Badge className="bg-rose-100 text-rose-600 border-none font-bold px-3 py-1 rounded-full">
+                                {stats.actionRequired.length} items
+                            </Badge>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="p-8 pt-2 h-[420px] overflow-y-auto space-y-4">
+                        {stats.actionRequired.map((item: any, idx: number) => (
+                            <div key={idx} className="flex items-center justify-between p-4 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all group">
+                                <div className="flex items-center gap-4">
+                                    <div className="flex flex-col items-center justify-center w-14 h-14 bg-rose-50 rounded-2xl text-rose-600 font-black">
+                                        <span className="text-[10px] uppercase">{new Date(item.date).toLocaleString('default', { month: 'short' })}</span>
+                                        <span className="text-sm">{new Date(item.date).getDate()}</span>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-slate-700 group-hover:text-rose-600 transition-colors uppercase tracking-tight">{item.title}</span>
+                                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{item.type}</span>
+                                    </div>
+                                </div>
+                                <Clock className="h-5 w-5 text-rose-400 group-hover:animate-pulse" />
+                            </div>
+                        ))}
+                        {stats.actionRequired.length === 0 && (
+                            <div className="h-full flex flex-col items-center justify-center text-slate-400 space-y-2">
+                                <CheckCircle2 className="h-12 w-12 opacity-20" />
+                                <span className="font-bold">System Clear - No actions required</span>
+                            </div>
+                        )}
+                    </CardContent>
+                </Card>
+
+                {/* Upcoming Events Widget */}
+                <Card className="rounded-[2.5rem] border-none bg-white shadow-2xl overflow-hidden border border-slate-100">
+                    <CardHeader className="p-8 pb-4">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <div className="p-3 bg-blue-50 rounded-2xl">
+                                    <Calendar className="h-6 w-6 text-blue-600" />
+                                </div>
+                                <CardTitle className="text-2xl font-black text-slate-800">Upcoming Events</CardTitle>
+                            </div>
+                            <Link href="/dashboard/calendar" className="text-blue-600 font-bold text-sm flex items-center gap-1 hover:underline">
+                                View Calendar <ArrowUpRight className="h-4 w-4" />
+                            </Link>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="p-8 pt-2 h-[420px] overflow-y-auto space-y-4">
+                        {stats.upcomingEvents.map((event: any, idx: number) => (
+                            <div key={idx} className="flex items-center justify-between p-5 bg-slate-50/50 rounded-3xl border border-transparent hover:border-blue-200 hover:bg-white transition-all group relative overflow-hidden">
+                                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-400" />
+                                <div className="flex items-center gap-4">
+                                    <Clock className="h-5 w-5 text-amber-500" />
+                                    <div className="flex flex-col">
+                                        <span className="font-black text-slate-700 group-hover:text-blue-600 transition-colors text-lg">{event.title}</span>
+                                        <div className="flex items-center gap-3 mt-1">
+                                            <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400">
+                                                <Calendar className="h-3 w-3" />
+                                                {new Date(event.date).toLocaleDateString('default', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                            </div>
+                                            <div className="flex items-center gap-1 text-[10px] font-black text-amber-600">
+                                                <Clock className="h-3 w-3" />
+                                                In {Math.ceil((new Date(event.date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))} days
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Badge className="bg-blue-100 text-blue-600 border-none px-3 py-1 font-bold text-[10px] rounded-full">TASK</Badge>
+                                    <ChevronRight className="h-5 w-5 text-slate-300 group-hover:text-blue-600" />
+                                </div>
+                            </div>
+                        ))}
+                        {stats.upcomingEvents.length === 0 && (
+                            <div className="h-full flex flex-col items-center justify-center text-slate-400 space-y-2">
+                                <Calendar className="h-12 w-12 opacity-20" />
+                                <span className="font-bold">No upcoming events this month</span>
+                            </div>
+                        )}
+                        <div className="pt-4 border-t border-slate-100">
+                            <div className="flex justify-center gap-6">
+                                <div className="flex items-center gap-2">
+                                    <div className="h-2 w-2 rounded-full bg-rose-500" />
+                                    <span className="text-[10px] font-bold text-slate-400">H-1 to H-3</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="h-2 w-2 rounded-full bg-amber-500" />
+                                    <span className="text-[10px] font-bold text-slate-400">H-4 to H-7</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                                    <span className="text-[10px] font-bold text-slate-400">H-8+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
             {/* Interactive Charts Grid */}
