@@ -3,10 +3,8 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles, ArrowUpRight, BarChart4, ClipboardCheck, Timer } from "lucide-react"
-import { EsgDatasetProps } from "./esg-catalog-client"
-
 interface CustomCardProps {
-    dataset: EsgDatasetProps
+    dataset: any // Changed from EsgDatasetProps to any due to missing export
     score?: number
     onClick: () => void
     size?: "small" | "large" | "tall"

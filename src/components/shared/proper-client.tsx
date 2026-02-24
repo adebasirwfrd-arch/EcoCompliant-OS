@@ -47,12 +47,6 @@ import {
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Pencil, MoreVertical } from "lucide-react"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 export function PROPERDashboardClient({
     assessments,

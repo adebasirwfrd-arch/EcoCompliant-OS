@@ -80,7 +80,7 @@ async function seedISO() {
 
     // 8. PERFORMANCE MONITORING (Cl. 9.1)
     await db.insert(isoPerformanceMonitoring).values([
-        { id: uuidv4(), indicatorName: "Water Reuse Rate", unit: "%", baselineValue: 15, targetValue: 30, currentValue: 22, status: "Ongoing", updatedAt: new Date() },
+        { id: uuidv4(), indicatorName: "Water Reuse Rate", parameter: "Volume", unit: "%", baselineValue: 15, targetValue: 30, currentValue: 22, frequency: "Monthly", status: "On Track", updatedAt: new Date() },
     ]);
 
     // 9. INTERNAL AUDITS (Cl. 9.2)
