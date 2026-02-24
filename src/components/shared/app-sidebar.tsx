@@ -17,6 +17,7 @@ import {
     Award,
     Recycle,
     Globe,
+    Scale,
 } from "lucide-react"
 
 import {
@@ -96,6 +97,11 @@ const data = {
                     title: "ESG Intelligence",
                     url: "/dashboard/esg",
                     icon: Globe,
+                },
+                {
+                    title: "Legal Register",
+                    url: "/dashboard/legal-register",
+                    icon: Scale,
                 },
                 {
                     title: "Audit Trail",

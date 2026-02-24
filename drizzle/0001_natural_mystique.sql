@@ -1,0 +1,21 @@
+CREATE TABLE "legal_registers" (
+	"id" text PRIMARY KEY NOT NULL,
+	"no" double precision,
+	"external_document_register" text,
+	"regulator" text,
+	"subject_matter" text,
+	"title" text,
+	"clause" text,
+	"description_of_clause" text,
+	"description_of_compliance" text,
+	"category" text,
+	"comply" text,
+	"percentage" text,
+	"evidence" text,
+	"program_of_compliance" text,
+	"last_updated" timestamp,
+	"last_reviewed" timestamp,
+	"next_review_date" timestamp,
+	"created_at" timestamp NOT NULL,
+	"updated_at" timestamp NOT NULL
+);

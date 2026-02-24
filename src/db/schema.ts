@@ -633,3 +633,25 @@ export const wastePartnersRelations = relations(wastePartners, ({ many }) => ({
 export const wasteSourcesRelations = relations(wasteSources, ({ many }) => ({
     logs: many(domesticWasteLogs),
 }));
+// --- LEGAL REGISTER ---
+export const legalRegisters = pgTable("legal_registers", {
+    id: text("id").primaryKey(),
+    no: doublePrecision("no"),
+    externalDocumentRegister: text("external_document_register"),
+    regulator: text("regulator"),
+    subjectMatter: text("subject_matter"),
+    title: text("title"),
+    clause: text("clause"),
+    descriptionOfClause: text("description_of_clause"),
+    descriptionOfCompliance: text("description_of_compliance"),
+    category: text("category"),
+    comply: text("comply"), // Y/N or Obligation
+    percentage: text("percentage"), // e.g. "TBD" or "100%"
+    evidence: text("evidence"),
+    programOfCompliance: text("program_of_compliance"),
+    lastUpdated: timestamp("last_updated"),
+    lastReviewed: timestamp("last_reviewed"),
+    nextReviewDate: timestamp("next_review_date"),
+    createdAt: timestamp("created_at").notNull(),
+    updatedAt: timestamp("updated_at").notNull(),
+});
