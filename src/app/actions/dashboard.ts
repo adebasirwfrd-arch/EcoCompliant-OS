@@ -89,9 +89,27 @@ export async function getDashboardStats() {
         });
 
         const upcomingEvents = [
-            ...legalReviews.map(l => ({ title: l.title || "Legal Review", date: l.nextReviewDate, type: "Legal", id: l.id })),
-            ...reportDeadlines.map(r => ({ title: r.title, date: r.dueDate, type: "Report", id: r.id })),
-            ...amdalNext.map(a => ({ title: a.parameter, date: a.nextDueDate, type: "AMDAL", id: a.id }))
+            ...legalReviews.map(l => ({
+                title: l.title || "Legal Review",
+                date: l.nextReviewDate,
+                type: "Legal",
+                id: l.id,
+                link: "/dashboard/legal-register"
+            })),
+            ...reportDeadlines.map(r => ({
+                title: r.title,
+                date: r.dueDate,
+                type: "Report",
+                id: r.id,
+                link: "/dashboard/compliance"
+            })),
+            ...amdalNext.map(a => ({
+                title: a.parameter,
+                date: a.nextDueDate,
+                type: "AMDAL",
+                id: a.id,
+                link: "/dashboard/amdal"
+            }))
         ].sort((a, b) => (a.date?.getTime() || 0) - (b.date?.getTime() || 0));
 
         // --- AGGREGATE ACTION REQUIRED ---
@@ -100,9 +118,27 @@ export async function getDashboardStats() {
         const storedWasteLong = wasteAll.filter(w => w.status === "stored" && (now.getTime() - w.createdAt.getTime()) > (w.maxStorageDays * 24 * 60 * 60 * 1000));
 
         const actionRequired = [
-            ...overdueReports.map(r => ({ title: r.title, date: r.dueDate, type: "Overdue", id: r.id })),
-            ...openCapa.map(c => ({ title: c.description, date: c.dueDate, type: "CAPA", id: c.id })),
-            ...storedWasteLong.map(w => ({ title: `Waste stored too long: ${w.wasteType}`, date: w.createdAt, type: "Waste", id: w.id }))
+            ...overdueReports.map(r => ({
+                title: r.title,
+                date: r.dueDate,
+                type: "Overdue",
+                id: r.id,
+                link: "/dashboard/compliance"
+            })),
+            ...openCapa.map(c => ({
+                title: c.description,
+                date: c.dueDate,
+                type: "CAPA",
+                id: c.id,
+                link: "/dashboard/iso14001"
+            })),
+            ...storedWasteLong.map(w => ({
+                title: `Waste stored too long: ${w.wasteType}`,
+                date: w.createdAt,
+                type: "Waste",
+                id: w.id,
+                link: "/dashboard/waste"
+            }))
         ];
 
         // --- IMPACT SCORE CALCULATION ---
@@ -151,5 +187,59 @@ export async function getDashboardStats() {
     } catch (error) {
         console.error("Dashboard Stats Error:", error);
         return null;
+    }
+}
+
+export async function getCalendarEvents() {
+    try {
+        const now = new Date();
+        const startOfYear = new Date(now.getFullYear(), 0, 1);
+        const endOfYear = new Date(now.getFullYear(), 11, 31);
+
+        // Fetch all relevant dates from all modules
+        const legalReviews = await db.query.legalRegisters.findMany();
+        const reports = await db.query.complianceReports.findMany();
+        const amdalNext = await db.query.amdalRequirements.findMany();
+        const caps = await db.query.isoCAPA.findMany();
+
+        const events = [
+            ...legalReviews.map(l => ({
+                id: `legal-${l.id}`,
+                title: l.title || "Legal Review",
+                date: l.nextReviewDate,
+                type: "Legal",
+                link: "/dashboard/legal-register",
+                status: "Planned"
+            })),
+            ...reports.map(r => ({
+                id: `report-${r.id}`,
+                title: r.title,
+                date: r.dueDate,
+                type: "Report",
+                link: "/dashboard/compliance",
+                status: r.status
+            })),
+            ...amdalNext.map(a => ({
+                id: `amdal-${a.id}`,
+                title: a.parameter,
+                date: a.nextDueDate,
+                type: "AMDAL",
+                link: "/dashboard/amdal",
+                status: "Pending"
+            })),
+            ...caps.map(c => ({
+                id: `capa-${c.id}`,
+                title: c.description,
+                date: c.dueDate,
+                type: "CAPA",
+                link: "/dashboard/iso14001",
+                status: c.status
+            }))
+        ].filter(e => e.date !== null);
+
+        return events;
+    } catch (error) {
+        console.error("Calendar Events Error:", error);
+        return [];
     }
 }
